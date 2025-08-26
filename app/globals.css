@@ -1,0 +1,341 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-feature-settings: "rlig" 1, "calt" 1;
+    background: #0f172a;
+  }
+
+  /* Default cursor for all devices initially */
+  body {
+    cursor: auto;
+  }
+
+  /* Only apply custom cursor on devices with precise pointing (desktop) */
+  @media (hover: hover) and (pointer: fine) {
+    body {
+      cursor: url("/cursor.png") 0 0, auto !important;
+    }
+
+    a,
+    button,
+    [role="button"],
+    .cursor-pointer {
+      cursor: url("/cursor.png") 0 0, pointer !important;
+    }
+  }
+
+  /* Force default cursor on touch devices */
+  @media (hover: none) and (pointer: coarse) {
+    body,
+    a,
+    button,
+    [role="button"],
+    .cursor-pointer {
+      cursor: auto !important;
+    }
+  }
+
+  /* Also handle mixed input devices */
+  @media (max-width: 1024px) {
+    body,
+    a,
+    button,
+    [role="button"],
+    .cursor-pointer {
+      cursor: auto !important;
+    }
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(6, 182, 212, 0.4), rgba(59, 130, 246, 0.4));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(6, 182, 212, 0.6), rgba(59, 130, 246, 0.6));
+}
+
+/* Smooth cursor transitions - optimized for performance */
+* {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow,
+    filter, backdrop-filter, cursor;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  transition-duration: 120ms;
+}
+
+/* Critical performance optimizations */
+html {
+  scroll-behavior: smooth;
+  /* Optimize paint and layout */
+  contain: layout style paint;
+}
+
+body {
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  contain: layout style;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Critical CSS to prevent parent containers from interfering with fixed positioning */
+html, body, #__next, main {
+  transform: none !important;
+  contain: none !important;
+  filter: none !important;
+  perspective: none !important;
+  will-change: auto !important;
+}
+
+ /* Critical rendering path optimizations */
+* {
+  box-sizing: border-box;
+}
+
+/* Optimize animations for GPU acceleration */
+.animate-gpu {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Reduce repaints for static elements */
+.static-bg {
+  contain: layout style paint;
+  will-change: auto;
+}
+
+/* Optimize backdrop filters */
+.backdrop-blur-xl,
+.backdrop-blur-sm {
+  will-change: backdrop-filter;
+  contain: layout style;
+}
+
+/* Optimize animations for low-end devices */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Performance optimizations for low-end devices */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* Optimize cursor loading */
+.cursor-custom {
+  will-change: cursor;
+}
+
+/* Reduce paint complexity for better performance */
+* {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Advanced layout optimizations */
+.layout-optimized {
+  contain: layout style;
+  will-change: auto;
+}
+
+/* GPU acceleration for animations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Enhanced scroll performance */
+.scroll-optimized {
+  /* Force hardware acceleration */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  
+  /* Optimize for smooth scrolling */
+  will-change: transform, opacity;
+  
+  /* Reduce paint complexity */
+  contain: layout style;
+}
+
+/* Optimize scroll performance */
+.smooth-scroll {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Reduce layout thrashing */
+.stable-layout {
+  contain: layout style;
+  transform: translateZ(0);
+}
+
+/* Optimize for mobile performance */
+@media (max-width: 768px) {
+  .mobile-optimized {
+    contain: layout style paint;
+    will-change: auto;
+  }
+  
+  /* Reduce animations on mobile for better performance */
+  .mobile-optimized * {
+    transition-duration: 0.1s !important;
+    animation-duration: 0.1s !important;
+  }
+}
+
+/* Reduce motion for better performance */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-optimized {
+    will-change: auto;
+    transform: none;
+  }
+}
+
+/* Optimize hero section for smooth scrolling */
+.hero-section {
+  contain: layout style;
+  will-change: transform, opacity;
+}
+
+/* Floating Navigation - Always visible and independent */
+.floating-nav {
+  position: fixed !important;
+  top: 24px !important;
+  right: 24px !important;
+  z-index: 999999 !important;
+  pointer-events: auto !important;
+  /* Ensure it's not affected by any parent containers */
+  contain: layout style paint;
+  /* Force it to be a stacking context */
+  isolation: isolate;
+  /* Allow transforms for animations */
+  transform: translateY(-200px) !important;
+  transition: transform 600ms cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+/* Nav states for animation */
+.floating-nav.nav-visible {
+  transform: translateY(0px) !important;
+}
+
+.floating-nav.nav-hidden {
+  transform: translateY(-200px) !important;
+}
+
+/* Additional safety rules for FloatingNav */
+.floating-nav {
+  /* Ensure child elements don't interfere with positioning */
+  position: relative;
+}
+
+.floating-nav > div {
+  /* Only apply transform: none to the main container div */
+  transform: none !important;
+}
+
+/* Ensure the portal container doesn't interfere */
+#__next {
+  /* Remove any transform that might interfere */
+  transform: none !important;
+}
+
+/* Ensure body doesn't interfere with fixed positioning */
+body {
+  /* Remove any transform that might interfere with fixed positioning */
+  transform: none !important;
+  /* Ensure proper stacking context */
+  isolation: isolate;
+}
+
+/* Ensure html doesn't interfere with fixed positioning */
+html {
+  /* Remove any transform that might interfere */
+  transform: none !important;
+  /* Ensure proper stacking context */
+  isolation: isolate;
+}
+
+/* Additional safety for any portal containers */
+[data-portal] {
+  transform: none !important;
+  contain: none !important;
+}
+
+/* Ensure no element can interfere with fixed positioning */
+*[style*="position: fixed"] {
+  z-index: 999999 !important;
+}
+
+/* Smooth scrolling for the entire page */
+html {
+  scroll-behavior: smooth;
+  /* Optimize for performance */
+  contain: layout style paint;
+}
+
+/* Optimize backdrop-blur for better performance */
+.backdrop-blur-xl {
+  will-change: backdrop-filter;
+}
+
+.backdrop-blur-sm {
+  will-change: backdrop-filter;
+}
+
+/* Exclude transform from global transitions to prevent conflicts with Framer Motion */
+.motion-safe * {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow,
+    filter, backdrop-filter, cursor;
+}
+
+/* Gradient text animation */
+@keyframes gradient-shift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
