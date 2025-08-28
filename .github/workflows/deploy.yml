@@ -31,7 +31,10 @@ jobs:
         run: npm ci
         
       - name: Build with Next.js
-        run: npm run build
+        run: npm run build:github-pages
+        env:
+          NODE_ENV: production
+          NEXT_PUBLIC_BASE_PATH: /portfolio
         
       - name: Setup Pages
         uses: actions/configure-pages@v4

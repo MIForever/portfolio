@@ -16,7 +16,7 @@
     "bundle:analyze": "cross-env ANALYZE=true next build",
     "performance:monitor": "cross-env NODE_ENV=development next dev",
     "build:static": "next build",
-    "build:github-pages": "next build && touch out/.nojekyll"
+    "build:github-pages": "node scripts/build-gh-pages.js"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "latest",
