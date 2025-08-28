@@ -267,8 +267,10 @@ function PortfolioContent() {
 
               <div className="space-y-6">
                 <div className="relative inline-block">
-                  <p className="text-3xl md:text-4xl font-light text-slate-300 mb-4">Backend & AI Developer</p>
-                  <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 blur-lg opacity-30 rounded-full" />
+                  <div className="relative inline-block">
+                    <p className="text-3xl md:text-4xl font-light text-slate-300 mb-4">Backend & AI Developer</p>
+                    <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 blur-lg opacity-30 rounded-full" />
+                  </div>
                 </div>
                 <p className="text-xl text-slate-400 leading-relaxed max-w-2xl">
                   Architecting intelligent systems and scalable infrastructure that power next-generation applications.

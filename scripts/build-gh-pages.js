@@ -141,6 +141,18 @@ try {
               modified = true
             }
             
+            // Fix JavaScript chunk references in JavaScript code (like the __next_f.push calls)
+            if (content.includes('"static/chunks/framer-motion.js"')) {
+              content = content.replace(/"static\/chunks\/framer-motion\.js"/g, '"static/chunks/framer-motion-0eb3bcfbc955ae2d.js"')
+              modified = true
+            }
+            
+            if (content.includes('"static/chunks/lucide-react.js"')) {
+              // Remove the lucide-react.js reference since it doesn't exist
+              content = content.replace(/"static\/chunks\/lucide-react\.js",?/g, '')
+              modified = true
+            }
+            
             if (modified) {
               fs.writeFileSync(filePath, content)
               console.log(`Fixed asset paths in ${path.relative(outDir, filePath)}`)
