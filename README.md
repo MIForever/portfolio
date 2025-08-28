@@ -17,7 +17,7 @@ A modern, responsive portfolio website built with Next.js, showcasing backend de
 - **Animations**: Framer Motion
 - **Icons**: Lucide React
 - **Deployment**: GitHub Pages
-
+    
 ## 📦 Installation
 
 ```bash
