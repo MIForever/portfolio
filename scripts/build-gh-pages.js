@@ -117,7 +117,7 @@ try {
               modified = true
             }
             
-            // Fix missing JavaScript chunk references
+            // Fix JavaScript chunk references - look for the actual patterns in the HTML
             if (content.includes('href="/portfolio/_next/static/chunks/framer-motion.js"')) {
               content = content.replace(/href="\/portfolio\/_next\/static\/chunks\/framer-motion\.js"/g, 'href="/portfolio/_next/static/chunks/framer-motion-0eb3bcfbc955ae2d.js"')
               modified = true
@@ -126,6 +126,18 @@ try {
             if (content.includes('href="/portfolio/_next/static/chunks/lucide-react.js"')) {
               // Remove the lucide-react.js modulepreload since it doesn't exist
               content = content.replace(/<link rel="modulepreload" href="\/portfolio\/_next\/static\/chunks\/lucide-react\.js"\/>/g, '')
+              modified = true
+            }
+            
+            // Also check for the patterns without the /portfolio prefix
+            if (content.includes('href="/_next/static/chunks/framer-motion.js"')) {
+              content = content.replace(/href="\/_next\/static\/chunks\/framer-motion\.js"/g, 'href="/portfolio/_next/static/chunks/framer-motion-0eb3bcfbc955ae2d.js"')
+              modified = true
+            }
+            
+            if (content.includes('href="/_next/static/chunks/lucide-react.js"')) {
+              // Remove the lucide-react.js modulepreload since it doesn't exist
+              content = content.replace(/<link rel="modulepreload" href="\/_next\/static\/chunks\/lucide-react\.js"\/>/g, '')
               modified = true
             }
             
