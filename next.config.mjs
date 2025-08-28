@@ -2,7 +2,6 @@
 const nextConfig = {
   output: 'export', // Enable static export for GitHub Pages
   trailingSlash: true, // Required for GitHub Pages
-  assetPrefix: '.', // Use relative paths for assets
   eslint: {
     ignoreDuringBuilds: true,
   },
