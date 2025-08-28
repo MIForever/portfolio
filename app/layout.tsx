@@ -11,7 +11,13 @@ export const metadata: Metadata = {
   description: "Backend Developer specializing in AI, Machine Learning, and scalable web applications. Expert in React, Node.js, Python, and modern cloud technologies.",
   keywords: ["Backend Developer", "AI Engineer", "Machine Learning", "React", "Node.js", "Python", "Web Development"],
   authors: [{ name: "Inoyatullo Musayev" }],
-
+  
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
+  },
+  
   robots: "index, follow",
   openGraph: {
     title: "Inoyatullo Musayev - Backend Developer & AI Engineer",

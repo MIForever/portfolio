@@ -2,6 +2,7 @@
 
 import { LazyMotion, domAnimation, m } from "framer-motion"
 import dynamic from 'next/dynamic'
+import Image from 'next/image'
 import {
   Github,
   Linkedin,
@@ -12,11 +13,13 @@ import {
   Brain,
   Server,
   Cloud,
-  Shield,
-  Cpu,
-  Layers,
   Download,
   Rocket,
+  Heart,
+  Volume2,
+  ShoppingCart,
+  Users,
+  MapPin,
 } from "lucide-react"
 
 import FloatingNav from "@/components/FloatingNav"
@@ -35,77 +38,96 @@ export default function Portfolio() {
 }
 
 function PortfolioContent() {
+    const projects = [
+      {
+        title: "X-Top",
+        description:
+          "Mobile and web marketplace that helps users find discounted brand products nearby, while enabling shops to easily publish and sync their promotions with POS/ERP systems.",
+        tech: [
+          "Django REST Framework",
+          "PostgreSQL",
+          "Redis",
+          "Celery",
+          "Docker",
+          "Nginx",
+        ],
+        icon: ShoppingCart,
+        gradient: "from-cyan-900/40 via-sky-800/30 to-indigo-900/40",
+        status: "Development",
+        metrics: "100+ Stores onboarded (planned)",
+        image: "/xtop-logo.png",
 
-  // status: "Production",
-  // status: "Active",
-  // status: "Production",
-  // status: "Beta",
-  // status: "Development",
-  // status: "Research",
-
-  const projects = [
-    {
-      title: "SOUL HR",
-      description:
-        "High-frequency trading system with deep learning models achieving 94% accuracy in market predictions.",
-      tech: ["Python", "TensorFlow", "Redis", "WebSocket"],
-      icon: Brain,
-      gradient: "from-indigo-900/40 via-purple-800/30 to-pink-900/40",
-      status: "Beta",
-      metrics: "94% Accuracy",
-      image: "/placeholder.svg?height=200&width=400&text=Neural+Trading+Dashboard",
-    },
-    {
-      title: "EchoBridge",
-      description: "Scalable machine learning infrastructure processing 50M+ data points with real-time inference.",
-      tech: ["Kubernetes", "Apache Kafka", "PyTorch", "Docker"],
-      icon: Layers,
-      gradient: "from-gray-900/40 via-slate-800/30 to-cyan-900/40",
-      status: "Research",
-      metrics: "50M+ Data Points",
-      image: "/placeholder.svg?height=200&width=400&text=ML+Pipeline+Architecture",
-    },
-    {
-      title: "Repliki i Remarki",
-      description: "Cloud-native backend system handling 500K+ concurrent users with 99.99% uptime.",
-      tech: ["Go", "gRPC", "PostgreSQL", "AWS"],
-      icon: Server,
-      gradient: "from-purple-900/40 via-blue-900/30 to-indigo-900/40",
-      status: "Production",
-      metrics: "99.99% Uptime",
-      image: "/repliki-i-remarki.png",
-    },
-    {
-      title: "BEN USPS",
-      description: "Real-time data processing engine with predictive analytics and automated insights generation.",
-      tech: ["FastAPI", "MongoDB", "Celery", "ElasticSearch"],
-      icon: Database,
-      gradient: "from-slate-900/40 via-gray-800/30 to-blue-900/40",
-      status: "Active",
-      metrics: "Real-time Processing",
-      image: "/ben-usps.png",
-    },
-    {
-      title: "Uzel",
-      description: "Decentralized application backend with smart contract integration and DeFi protocols.",
-      tech: ["Solidity", "Web3.js", "Node.js", "IPFS"],
-      icon: Shield,
-      gradient: "from-orange-900/40 via-red-800/30 to-pink-900/40",
-      status: "Research",
-      metrics: "DeFi Integration",
-      image: "/uzel-logo.png",
-    },
-    {
+        },
+      {
+        title: "SOUL HR",
+        description:
+          "AI-powered HR platform with intelligent candidate matching, automated screening, and predictive analytics for talent acquisition.",
+        tech: ["Python", "FastAPI", "React", "PostgreSQL", "Redis", "Docker"],
+        icon: Users,
+        gradient: "from-purple-900/40 via-blue-900/30 to-indigo-900/40",
+        status: "Production",
+        metrics: "10K+ Candidates",
+        image: "/soulhr-logo.png",
+      },
+      {
+        title: "Repliki i Remarki",
+        description:
+          "Telegram bot that helps users explore and discover interesting places across Russia, with features for sharing photos, videos, and audios.",
+        tech: ["Python", "aiogram", "PostgreSQL", "Redis", "Docker", "Google Maps API"],
+        icon: MapPin,
+        gradient: "from-gray-900/40 via-slate-800/30 to-cyan-900/40",
+        status: "Production",
+        metrics: "5K+ Bookings",
+        image: "/repliki-i-remarki.png",
+      },
+      {
+        title: "BEN USPS",
+        description:
+          "Telegram bot that monitors the USPS load board in real-time, scrapes new job postings, and sends formatted notifications to a channel with duplicate tracking and token auto-refresh.",
+        tech: ["Python", "aiogram", "BeautifulSoup", "Requests", "Pydantic", "Docker"],
+        icon: Database,
+        gradient: "from-slate-900/40 via-gray-800/30 to-blue-900/40",
+        status: "Active",
+        metrics: "500+ loads posted daily",
+        image: "/ben-usps.png",
+      },
+      {
+        title: "Uzel",
+        description:
+          "Telegram-based dating bot with profile liking, messaging, and smart matching for events and shared interests. Supports multilingual UI, notifications, and async performance at scale.",
+        tech: [
+          "Python",
+          "aiogram",
+          "FastAPI",
+          "SQLAlchemy",
+          "PostgreSQL",
+          "Redis",
+          "Docker",
+        ],
+        icon: Heart,
+        gradient: "from-orange-900/40 via-red-800/30 to-pink-900/40",
+        status: "Research",
+        metrics: "5K+ matches facilitated",
+        image: "/uzel-logo.png",
+      },
+      {
       title: "SpikUp",
-      description: "Low-latency computing platform for IoT devices with distributed processing capabilities.",
-      tech: ["Rust", "MQTT", "InfluxDB", "Kubernetes"],
-      icon: Cpu,
-      gradient: "from-emerald-900/40 via-teal-800/30 to-cyan-900/40",
-      status: "Research",
-      metrics: "<10ms Latency",
-      image: "/spikup-logo.png",
-    },
-  ]
+        description:
+          "AI-powered Telegram pronunciation coach that helps users master English by generating phonetic transcriptions, translations, and natural-sounding voice messages with ElevenLabs voices.",
+        tech: [
+          "Python",
+          "aiogram",
+          "PostgreSQL",
+          "ElevenLabs API",
+            "Google Translate",
+        ],
+        icon: Volume2,
+        gradient: "from-emerald-900/40 via-teal-800/30 to-cyan-900/40",
+        status: "Active",
+        metrics: "1M+ words practiced",
+        image: "/spikup-logo.png",
+      },
+    ]
 
   const technologiesByCategory = [
     {
@@ -470,10 +492,13 @@ function PortfolioContent() {
                    className={`relative rounded-3xl backdrop-blur-xl bg-gradient-to-br ${project.gradient} border border-white/10 shadow-xl hover:shadow-cyan-500/25 hover:scale-105 transition-all duration-200 h-full overflow-hidden`}
                  >
                                                                              <div className="relative h-48 overflow-hidden rounded-t-3xl">
-                     <img
+                     <Image
                        src={project.image || "/placeholder.svg"}
                        alt={project.title}
-                       className="w-full h-full object-cover transition-transform duration-200 group-hover:scale-110"
+                       fill
+                       className="object-cover transition-transform duration-200 group-hover:scale-110"
+                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                       quality={90}
                      />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                     <div className="absolute top-4 right-4 flex items-center space-x-2">
