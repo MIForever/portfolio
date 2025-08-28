@@ -15,8 +15,8 @@
     "performance:test": "lighthouse http://localhost:3000 --output=json --output-path=./lighthouse-report.json --chrome-flags='--headless'",
     "bundle:analyze": "cross-env ANALYZE=true next build",
     "performance:monitor": "cross-env NODE_ENV=development next dev",
-    "build:static": "next build && next export",
-    "build:github-pages": "next build && next export"
+    "build:static": "next build",
+    "build:github-pages": "next build"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "latest",

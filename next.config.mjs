@@ -2,6 +2,7 @@
 const nextConfig = {
   output: 'export', // Enable static export for GitHub Pages
   trailingSlash: true, // Required for GitHub Pages
+  basePath: process.env.NODE_ENV === 'production' ? '/mif-portfolio' : '',
   eslint: {
     ignoreDuringBuilds: true,
   },
