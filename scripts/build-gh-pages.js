@@ -25,6 +25,24 @@ try {
     console.log('Created 404.html for GitHub Pages routing')
   }
   
+  // Fix asset paths in HTML files
+  const htmlFiles = ['index.html', '404.html']
+  htmlFiles.forEach(fileName => {
+    const filePath = path.join(outDir, fileName)
+    if (fs.existsSync(filePath)) {
+      let content = fs.readFileSync(filePath, 'utf8')
+      
+      // Replace absolute paths with relative paths
+      content = content.replace(/\/_next\//g, './_next/')
+      content = content.replace(/\/cursor\.png/g, './cursor.png')
+      content = content.replace(/\/favicon\.ico/g, './favicon.ico')
+      content = content.replace(/\/apple-touch-icon\.png/g, './apple-touch-icon.png')
+      
+      fs.writeFileSync(filePath, content)
+      console.log(`Fixed asset paths in ${fileName}`)
+    }
+  })
+  
   console.log('Build completed successfully!')
 } catch (error) {
   console.error('Build failed:', error)

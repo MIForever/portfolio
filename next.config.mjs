@@ -2,8 +2,7 @@
 const nextConfig = {
   output: 'export', // Enable static export for GitHub Pages
   trailingSlash: true, // Required for GitHub Pages
-  basePath: process.env.NODE_ENV === 'production' ? '/portfolio' : '', // Add base path for GitHub Pages
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/portfolio' : '', // Add asset prefix
+  assetPrefix: '.', // Use relative paths for assets
   eslint: {
     ignoreDuringBuilds: true,
   },
