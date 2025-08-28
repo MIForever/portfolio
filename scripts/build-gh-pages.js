@@ -117,6 +117,18 @@ try {
               modified = true
             }
             
+            // Fix missing JavaScript chunk references
+            if (content.includes('href="/portfolio/_next/static/chunks/framer-motion.js"')) {
+              content = content.replace(/href="\/portfolio\/_next\/static\/chunks\/framer-motion\.js"/g, 'href="/portfolio/_next/static/chunks/framer-motion-0eb3bcfbc955ae2d.js"')
+              modified = true
+            }
+            
+            if (content.includes('href="/portfolio/_next/static/chunks/lucide-react.js"')) {
+              // Remove the lucide-react.js modulepreload since it doesn't exist
+              content = content.replace(/<link rel="modulepreload" href="\/portfolio\/_next\/static\/chunks\/lucide-react\.js"\/>/g, '')
+              modified = true
+            }
+            
             if (modified) {
               fs.writeFileSync(filePath, content)
               console.log(`Fixed asset paths in ${path.relative(outDir, filePath)}`)
